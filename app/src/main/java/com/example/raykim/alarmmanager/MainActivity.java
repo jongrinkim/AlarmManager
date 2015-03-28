@@ -56,10 +56,12 @@ public class MainActivity extends Activity {
     }
 
     public void cancel() {
-        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-        manager.cancel(pendingIntent);
-        Toast.makeText(this, "Alarm Canceled", Toast.LENGTH_SHORT).show();
+//        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent i = new Intent(MainActivity.this, CancelActivity.class);
+        startActivity(i);
+        finish();
+//        manager.cancel(pendingIntent);
+//        Toast.makeText(this, "Alarm Canceled", Toast.LENGTH_SHORT).show();
     }
 
     public void startAt10() {
