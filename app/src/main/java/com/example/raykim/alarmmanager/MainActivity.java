@@ -15,6 +15,8 @@ import java.util.Calendar;
 public class MainActivity extends Activity {
 
     private PendingIntent pendingIntent;
+    String hourEntered;
+    String minuteEntered;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +68,18 @@ public class MainActivity extends Activity {
 
     public void startAt10() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int interval = 1000 * 60 * 20;
+        int interval = 8000; //1000 * 60 * 20;
+        //every 8 second it will ring
 
-        /* Set the alarm to start at 2:30 PM */
+        Intent i = new Intent(MainActivity.this, AlarmSetter.class);
+        startActivity(i);
+        //finish();
+
+        /* Set the alarm to start at HH:MM */
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 14);
-        calendar.set(Calendar.MINUTE, 30);
+        calendar.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hourEntered));
+        calendar.set(Calendar.MINUTE, Integer.parseInt(minuteEntered));
 
         /* Repeating on every 20 minutes interval */
         manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
