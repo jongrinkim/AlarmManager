@@ -57,6 +57,7 @@ public class MainActivity extends Activity {
 
     public void cancel() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
         manager.cancel(pendingIntent);
         Toast.makeText(this, "Alarm Canceled", Toast.LENGTH_SHORT).show();
     }
