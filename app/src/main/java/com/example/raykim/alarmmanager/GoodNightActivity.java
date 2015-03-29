@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +34,7 @@ public class GoodNightActivity extends ActionBarActivity {
 
         //System.out.println("You have set your alarm to:" + hour + " : " + minute);
 
-        timeInfo.setText("You have set your alarm to:" + hour + " : " + minute);
+        timeInfo.setText("Your alarm time:" + hour + " : " + minute);
 
         findViewById(R.id.stopAlarm).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +52,7 @@ public class GoodNightActivity extends ActionBarActivity {
             Toast.makeText(this, "Alarm Canceled", Toast.LENGTH_SHORT).show();
         }
         else {
-            Intent i = new Intent(GoodNightActivity.this, CancelActivity.class);
+            Intent i = new Intent(GoodNightActivity.this, MathActivity.class);
             startActivity(i);
             finish();
         }

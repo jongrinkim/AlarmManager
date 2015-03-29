@@ -1,6 +1,8 @@
 package com.example.raykim.alarmmanager;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -17,12 +19,15 @@ import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
  * Created by raykim on 3/28/15.
  */
 public class AlarmSetter extends Activity {
+
+    private PendingIntent pendingIntent;
 
     ImageButton done;
     EditText hourText, minuteText;
@@ -33,6 +38,12 @@ public class AlarmSetter extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeset);
+
+
+        /* Retrieve a PendingIntent that will perform a broadcast */
+        Intent alarmIntent = new Intent(AlarmSetter.this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(AlarmSetter.this, 0, alarmIntent, 0);
+
 
         done = (ImageButton) findViewById(R.id.done);
 
@@ -56,7 +67,29 @@ public class AlarmSetter extends Activity {
                 String hourEntered = hourText.getText().toString();
                 String minuteEntered = minuteText.getText().toString();
 
+
+                AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                // interval of alarm ring
+                int interval = 1000 * 60 * 60 * 24; // 24 hours in milliseconds
+//                int interval = 8000 // every 8 seconds
+
+                /* Set the alarm to start at HH:MM */
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(System.currentTimeMillis());
+
+                // Hardcode the time for test-purpose
+//                calendar.set(Calendar.HOUR_OF_DAY, 7);
+//                calendar.set(Calendar.MINUTE, 30);
+
+                calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hourEntered));
+                calendar.set(Calendar.MINUTE, Integer.parseInt(minuteEntered));
+                manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), interval, pendingIntent);
+
+
                 Intent i = new Intent(AlarmSetter.this, GoodNightActivity.class);
+
+                i.putExtra("hour", "HH");
+                i.putExtra("minute", "MM");
 
                 startActivity(i);
                 finish();
