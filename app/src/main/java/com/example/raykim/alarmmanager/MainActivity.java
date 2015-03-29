@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -35,90 +37,86 @@ public class MainActivity extends Activity {
             }
         });
 
-        findViewById(R.id.stopAlarm).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancel();
-            }
-        });
 
-        findViewById(R.id.stopAlarmAt10).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startAt10();
-            }
-        });
+
+//        findViewById(R.id.stopAlarmAt10).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startAt10();
+//            }
+//        });
     }
 
     public void start() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int interval = 8000;
-
-        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-        Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
-    }
-
-    public void cancel() {
-        Answered ans = Answered.getInstance();
-        if (ans.getAnswers()){
-            AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            manager.cancel(pendingIntent);
-            Toast.makeText(this, "Alarm Canceled", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Intent i = new Intent(MainActivity.this, CancelActivity.class);
-            startActivity(i);
-            finish();
-        }
-
-    }
-
-    public void startAt10() {
-        //AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int interval = 8000; //1000 * 60 * 20;
-        //every 8 second it will ring
+        // interval of alarm ring
+        int interval = 8000; // in milliseconds
 
         Intent i = new Intent(MainActivity.this, AlarmSetter.class);
-        //i.putExtra("hourEntered", hourEntered);
-//
         startActivity(i);
-        finish();
+        //finish();
 
-        /* Set the alarm to start at HH:MM */
+                /* Set the alarm to start at HH:MM */
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        //calendar.set(Calendar.HOUR_OF_DAY, 5);
-        //calendar.set(Calendar.MINUTE, 05);
-        calendar.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hourEntered));
-        calendar.set(Calendar.MINUTE, Integer.parseInt(minuteEntered));
+        calendar.set(Calendar.HOUR_OF_DAY, 22);
+        calendar.set(Calendar.MINUTE, 18);
 
-        /* Repeating on every 8 seconds interval */
-        /*manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                interval, pendingIntent);*/
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), interval, pendingIntent);
 
+
+        // Use System.currentTimeMillis() if you want to start the alarm right away
+          //manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
+          //Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
     }
 
 
+//    public void startAt10() {
+//        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//        int interval = 8000; //1000 * 60 * 20;
+//        //every 8 second it will ring
+//
+//        //Intent i = new Intent(MainActivity.this, AlarmSetter.class);
+//        //i.putExtra("hourEntered", hourEntered);
+////
+//        //startActivity(i);
+//        //finish();
+//
+//        /* Set the alarm to start at HH:MM */
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeInMillis(System.currentTimeMillis());
+//        calendar.set(Calendar.HOUR_OF_DAY, 22);
+//        calendar.set(Calendar.MINUTE, 18);
+//        //calendar.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hourEntered));
+//        //calendar.set(Calendar.MINUTE, Integer.parseInt(minuteEntered));
+//
+//        /* Repeating on every 8 seconds interval */
+//        manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+//                interval, pendingIntent);
+//
+//    }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

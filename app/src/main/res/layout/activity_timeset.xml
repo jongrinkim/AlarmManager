@@ -19,7 +19,7 @@
         <!--android:background="@drawable/yourcar"-->
 
     <TextView
-        android:id="@+id/hour"
+        android:id="@+id/hourText"
         android:text="Hour"
         android:textSize="20sp"
         android:textColor="#000000"
@@ -43,14 +43,14 @@
         android:layout_below="@id/setyouralarm"/>
 
     <TextView
-        android:id="@+id/minute"
+        android:id="@+id/minuteText"
         android:text="Minute"
         android:layout_marginLeft="20dp"
         android:textColor="#000000"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/hour"
+        android:layout_below="@id/hourText"
         android:textSize="20sp"/>
 
     <EditText

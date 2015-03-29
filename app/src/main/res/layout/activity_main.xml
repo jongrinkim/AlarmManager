@@ -32,24 +32,5 @@
         android:layout_marginTop="50dp"
         android:background="#e74c3c" />
 
-    <Button
-        android:id="@+id/stopAlarm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/startAlarm"
-
-        android:text="Stop Alarm"
-        android:layout_marginTop="50dp"
-        android:background="#e74c3c" />
-
-
-    <Button
-        android:id="@+id/stopAlarmAt10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/stopAlarm"
-        android:text="Stop Alarm at 10:30"
-        android:layout_marginTop="50dp"
-        android:background="#e74c3c" />
 
 </RelativeLayout>

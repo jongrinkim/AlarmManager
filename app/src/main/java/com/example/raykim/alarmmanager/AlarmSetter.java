@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -24,10 +25,9 @@ import java.util.List;
 public class AlarmSetter extends Activity {
 
     ImageButton done;
-    EditText hour, minute;
+    EditText hourText, minuteText;
 
     TextView hourView, minuteView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,32 +36,34 @@ public class AlarmSetter extends Activity {
 
         done = (ImageButton) findViewById(R.id.done);
 
-        hourView = (TextView) findViewById(R.id.hour);
-        minuteView = (TextView) findViewById(R.id.minute);
+        hourView = (TextView) findViewById(R.id.hourText);
+        minuteView = (TextView) findViewById(R.id.minuteText);
 
-    done.setOnClickListener(new View.OnClickListener()    {
+        done.setOnClickListener(new View.OnClickListener()    {
 
-        @Override
-        public void onClick(View v){
+            @Override
+            public void onClick(View v){
 
-            hour = (EditText) findViewById(R.id.hourField);
-            minute = (EditText) findViewById(R.id.minuteField);
+                hourText = (EditText) findViewById(R.id.hourField);
+                minuteText = (EditText) findViewById(R.id.minuteField);
 
-            InputMethodManager imm = (InputMethodManager) getSystemService(
-                    Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(minute.getWindowToken(), 0);
+                InputMethodManager imm = (InputMethodManager) getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(minuteText.getWindowToken(), 0);
 
-            //model = (EditText) findViewById(R.id.modelField);
+                //model = (EditText) findViewById(R.id.modelField);
 
-            String hourEntered = hour.getText().toString();
-            String minuteEntered = minute.getText().toString();
+                String hourEntered = hourText.getText().toString();
+                String minuteEntered = minuteText.getText().toString();
 
-            Intent i = new Intent(AlarmSetter.this, MainActivity.class);
+                Intent i = new Intent(AlarmSetter.this, GoodNightActivity.class);
 
-            startActivity(i);
-            finish();
+                startActivity(i);
+                finish();
 
-            }
+                }
         });
+
     }
+
 }
