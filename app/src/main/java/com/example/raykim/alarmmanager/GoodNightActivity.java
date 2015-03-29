@@ -16,6 +16,7 @@ import android.widget.Toast;
 public class GoodNightActivity extends ActionBarActivity {
 
     private PendingIntent pendingIntent;
+    //String day;
     String hour;
     String minute;
 
@@ -29,6 +30,7 @@ public class GoodNightActivity extends ActionBarActivity {
         timeInfo = (TextView) findViewById(R.id.timeInfo);
 
         //INTENTS EXTRAS FROM AlarmSetter ACTIVITY
+        //day = getIntent().getStringExtra("day");
         hour = getIntent().getStringExtra("hour");
         minute = getIntent().getStringExtra("minute");
 
@@ -45,40 +47,43 @@ public class GoodNightActivity extends ActionBarActivity {
     }
 
     public void cancel() {
-        Answered ans = Answered.getInstance();
-        if (ans.getAnswers()){
-            AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            manager.cancel(pendingIntent);
-            Toast.makeText(this, "Alarm Canceled", Toast.LENGTH_SHORT).show();
-        }
-        else {
+
+
+
+//        Answered ans = Answered.getInstance();
+//        if (ans.getAnswers()){
+//            AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//            manager.cancel(pendingIntent);
+//            Toast.makeText(this, "Alarm Canceled", Toast.LENGTH_SHORT).show();
+//        }
+//        else {
             Intent i = new Intent(GoodNightActivity.this, MathActivity.class);
             startActivity(i);
             finish();
-        }
+//        }
 
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_good_night, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_good_night, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }
