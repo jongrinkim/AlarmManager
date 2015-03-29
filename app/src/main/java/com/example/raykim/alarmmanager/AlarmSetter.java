@@ -56,9 +56,9 @@ public class AlarmSetter extends Activity {
             String hourEntered = hour.getText().toString();
             String minuteEntered = minute.getText().toString();
 
-//            Intent i = new Intent(AlarmSetter.this, MainActivity.class);
+            Intent i = new Intent(AlarmSetter.this, MainActivity.class);
 
-//            startActivity(i);
+            startActivity(i);
             finish();
 
             }
