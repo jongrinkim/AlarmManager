@@ -41,10 +41,11 @@
             android:name=".CancelActivity"
             android:label="@string/title_activity_cancel" >
         </activity>
-
+        <activity android:name=".AlarmSetter" >
+        </activity>
         <activity
-            android:name=".AlarmSetter">
-
+            android:name=".GoodNightActivity"
+            android:label="@string/title_activity_good_night" >
         </activity>
     </application>
 
