@@ -30,7 +30,7 @@ public class AlarmSetter extends Activity {
     private PendingIntent pendingIntent;
 
     ImageButton done;
-    EditText hourText, minuteText;
+    EditText hour, minute;
 
     TextView hourView, minuteView;
 
@@ -55,17 +55,17 @@ public class AlarmSetter extends Activity {
             @Override
             public void onClick(View v){
 
-                hourText = (EditText) findViewById(R.id.hourField);
-                minuteText = (EditText) findViewById(R.id.minuteField);
+                hour = (EditText) findViewById(R.id.hourField);
+                minute = (EditText) findViewById(R.id.minuteField);
 
                 InputMethodManager imm = (InputMethodManager) getSystemService(
                         Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(minuteText.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(minute.getWindowToken(), 0);
 
                 //model = (EditText) findViewById(R.id.modelField);
 
-                String hourEntered = hourText.getText().toString();
-                String minuteEntered = minuteText.getText().toString();
+                String hourEntered = hour.getText().toString();
+                String minuteEntered = minute.getText().toString();
 
 
                 AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -88,8 +88,8 @@ public class AlarmSetter extends Activity {
 
                 Intent i = new Intent(AlarmSetter.this, GoodNightActivity.class);
 
-                i.putExtra("hour", "HH");
-                i.putExtra("minute", "MM");
+                i.putExtra("hour", hourEntered);
+                i.putExtra("minute", minuteEntered);
 
                 startActivity(i);
                 finish();
