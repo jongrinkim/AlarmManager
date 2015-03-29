@@ -38,7 +38,7 @@
         </receiver>
 
         <activity
-            android:name=".CancelActivity"
+            android:name=".MathActivity"
             android:label="@string/title_activity_cancel" >
         </activity>
         <activity android:name=".AlarmSetter" >
