@@ -16,8 +16,8 @@ import android.widget.Toast;
 public class GoodNightActivity extends ActionBarActivity {
 
     private PendingIntent pendingIntent;
-    int hour;
-    int minute;
+    String hour;
+    String minute;
 
     TextView timeInfo;
 
@@ -29,8 +29,8 @@ public class GoodNightActivity extends ActionBarActivity {
         timeInfo = (TextView) findViewById(R.id.timeInfo);
 
         //INTENTS EXTRAS FROM AlarmSetter ACTIVITY
-        hour = getIntent().getIntExtra("hour", 7);
-        minute = getIntent().getIntExtra("minute", 30);
+        hour = getIntent().getStringExtra("hour");
+        minute = getIntent().getStringExtra("minute");
 
         //System.out.println("You have set your alarm to:" + hour + " : " + minute);
 
