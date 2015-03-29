@@ -74,23 +74,28 @@ public class MainActivity extends Activity {
     }
 
     public void startAt10() {
-        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        //AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         int interval = 8000; //1000 * 60 * 20;
         //every 8 second it will ring
 
         Intent i = new Intent(MainActivity.this, AlarmSetter.class);
+        //i.putExtra("hourEntered", hourEntered);
+//
         startActivity(i);
-        //finish();
+        finish();
 
         /* Set the alarm to start at HH:MM */
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
+        //calendar.set(Calendar.HOUR_OF_DAY, 5);
+        //calendar.set(Calendar.MINUTE, 05);
         calendar.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hourEntered));
         calendar.set(Calendar.MINUTE, Integer.parseInt(minuteEntered));
 
-        /* Repeating on every 20 minutes interval */
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                interval, pendingIntent);
+        /* Repeating on every 8 seconds interval */
+        /*manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                interval, pendingIntent);*/
+
     }
 
 

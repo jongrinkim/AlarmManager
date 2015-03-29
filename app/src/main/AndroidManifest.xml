@@ -41,6 +41,11 @@
             android:name=".CancelActivity"
             android:label="@string/title_activity_cancel" >
         </activity>
+
+        <activity
+            android:name=".AlarmSetter">
+
+        </activity>
     </application>
 
 </manifest>
